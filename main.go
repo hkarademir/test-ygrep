@@ -152,7 +152,7 @@ func searchMappingNode(node *yaml.Node, searchKey string, depth int, kind bool) 
 					printKeyValue(keyNode, valueNode, depth)
 				} else {
 					printKey(keyNode, depth)
-					if err := marshalAndPrint(valueNode, depth); err != nil {
+					if err := marshalAndPrint(valueNode); err != nil {
 						return foundAny, err
 					}
 				}
@@ -168,7 +168,7 @@ func searchMappingNode(node *yaml.Node, searchKey string, depth int, kind bool) 
 					printKeyValue(keyNode, valueNode, depth)
 				} else {
 					printKey(keyNode, depth)
-					if err := marshalAndPrint(valueNode, depth); err != nil {
+					if err := marshalAndPrint(valueNode); err != nil {
 						return foundAny, err
 					}
 				}
@@ -216,7 +216,7 @@ func printKey(keyNode *yaml.Node, depth int) {
 }
 
 // marshalAndPrint marshals a YAML node and prints its content.
-func marshalAndPrint(node *yaml.Node, depth int) error {
+func marshalAndPrint(node *yaml.Node) error {
 	out, err := yaml.Marshal(node)
 	if err != nil {
 		return fmt.Errorf("Error Marshaling YAML: %v", err)
@@ -226,16 +226,16 @@ func marshalAndPrint(node *yaml.Node, depth int) error {
 	//} else {
 	//	printIndented(out, depth)
 	//}
-	printIndented(out, depth)
+	printIndented(out)
 	return nil
 }
 
 // printIndented prints the string with indentation.
-func printIndented(text []byte, depth int) {
+func printIndented(text []byte) {
 	lines := strings.Split(string(text), "\n")
 	for _, line := range lines {
 		if line != "" {
-			fmt.Printf(color.CyanString("%s%s\n", strings.Repeat("  ", depth), line))
+			fmt.Printf(color.CyanString("%s%s\n", strings.Repeat("  ", 1), line))
 		}
 	}
 }
