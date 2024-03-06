@@ -1,0 +1,5 @@
+
+7
+main.go,0\6\0607f785dfa3c3861b3239f6723eb276d8056461
+?
+.goreleaser.yml,4\9\49397b7bbec9ba5f48b2b780de802f2a8518b03c
