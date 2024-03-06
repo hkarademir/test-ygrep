@@ -95,6 +95,7 @@ func processArguments(args []string, flagsCount int) (searchKey string, yamlCont
 	case argCount == flagsCount+2: // Get Values from STDIN
 		if isStdinEmpty() {
 			fmt.Println("No data provided in standard input.")
+			printHelp()
 			os.Exit(1)
 		}
 		yamlContent, err = io.ReadAll(os.Stdin)
